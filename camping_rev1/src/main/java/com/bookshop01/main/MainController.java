@@ -39,4 +39,4 @@ public class MainController extends BaseController {
 	}
 }
 
-//c:forEach var="item" items="${goodsMap.bestseller }">
+

@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface AdminOrderController {
 	public ModelAndView adminOrderMain(@RequestParam Map<String, String> dateMap,
+			@RequestParam(value="search_condition", required = false) String search_condition,
+			@RequestParam(value="search",required = false) String t_search_word,
             HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ResponseEntity modifyDeliveryState(@RequestParam Map<String, String> deliveryMap, 
             HttpServletRequest request, HttpServletResponse response)  throws Exception;

@@ -26,12 +26,17 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 	@Autowired
 	AdminMemberService adminMemberService;
 	
+	
 	@RequestMapping(value="/adminMemberMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
 			                           HttpServletRequest request, HttpServletResponse response)  throws Exception{
+		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-
+		
+		
+		System.out.println(viewName);
+		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
@@ -55,8 +60,12 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
-		ArrayList<MemberVO> member_list=adminMemberService.listMember(condMap);
-		mav.addObject("member_list", member_list);
+		
+		
+		/* ArrayList<MemberVO> member_list=adminMemberService.listMember(condMap); */
+		
+		
+		/* mav.addObject("member_list", member_list); */
 		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
@@ -72,6 +81,11 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		return mav;
 		
 	}
+	
+	
+	
+	
+	
 	@RequestMapping(value="/memberDetail.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView memberDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
@@ -81,6 +95,9 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		mav.addObject("member_info",member_info);
 		return mav;
 	}
+	
+	
+	
 	
 	@RequestMapping(value="/modifyMemberInfo.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception{
@@ -128,6 +145,8 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		pw.close();		
 		
 	}
+	
+	
 	
 	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})
 	public ModelAndView deleteMember(HttpServletRequest request, HttpServletResponse response)  throws Exception {
