@@ -79,7 +79,7 @@ function modify_cart_qty(goods_id,bookPrice,index){
 		success : function(data, textStatus) {
 			//alert(data);
 			if(data.trim()=='modify_success'){
-				alert("수량을 변경했습니다!!");	
+				alert("수량을 변경했습니다!!");
 				window.location.reload();
 			}else{
 				alert("다시 시도해 주세요!!");	
@@ -110,17 +110,22 @@ function delete_cart_goods(cart_id){
     formObj.submit();
 }
 
-function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+/*
+ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	var total_price,final_total_price,_goods_qty;
 	var cart_goods_qty=document.getElementById("cart_goods_qty");
 	
 	_order_goods_qty=cart_goods_qty.value; //장바구니에 담긴 개수 만큼 주문한다.
 	var formObj=document.createElement("form");
+	formObj.method="post";
+    formObj.action="${contextPath}/order/orderEachGoods.do";
+	//document.getElementById("formObj").style.display ='none';
 	var i_goods_id = document.createElement("input"); 
     var i_goods_title = document.createElement("input");
     var i_goods_sales_price=document.createElement("input");
     var i_fileName=document.createElement("input");
     var i_order_goods_qty=document.createElement("input");
+    
     
     i_goods_id.name="goods_id";
     i_goods_title.name="goods_title";
@@ -141,56 +146,68 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.appendChild(i_order_goods_qty);
 
     document.body.appendChild(formObj); 
-    formObj.method="post";
-    formObj.action="${contextPath}/order/orderEachGoods.do";
     formObj.submit();
-}
+}*/
 
-function fn_order_all_cart_goods(){
+function fn_order_cart_goods(all_cnt){
 //	alert("모두 주문하기");
 	var order_goods_qty;
 	var order_goods_id;
 	var objForm=document.frm_order_all_cart;
 	var cart_goods_qty=objForm.cart_goods_qty;
 	var h_order_each_goods_qty=objForm.h_order_each_goods_qty;
-	var checked_goods=objForm.checked_goods;
-	var length=checked_goods.length;
+	//체크박스에 체크된 값 넣어주기
+	/* $("input[name=objForm.checked_goods.name]:checked").each(function(){
+		var goods = $(this).val();
+		checking.push(goods);
+	}) */
+	var length=0;
+	$("input[name=objForm.checked_goods.name]:checked").each(function(){
+		length++;
+	})
+	alert(length);
 	
-	
-	//alert(length);
+	//체크박스에 체크된 삼품이 있을 경우
 	if(length>1){
-		for(var i=0; i<length;i++){
-			if(checked_goods[i].checked==true){
-				order_goods_id=checked_goods[i].value;
-				order_goods_qty=cart_goods_qty[i].value;
-				cart_goods_qty[i].value="";
-				cart_goods_qty[i].value=order_goods_id+":"+order_goods_qty;
-				//alert(select_goods_qty[i].value);
-				console.log(cart_goods_qty[i].value);
+		//var checked_goods = objForm.checked_goods;
+		for(var i=0; i<all_cnt;i++){
+			var checked_goods = objForm.checked_goods[i];
+			if(checked_goods.checked){
+				cart_goods_id[i].value="";
+				cart_goods_id[i].value=checked_goods.value;
 			}
-		}	
-	}else{
-		order_goods_id=checked_goods.value;
+			else{
+				cart_goods_id[i].value="";
+				//상품을 체크하지 않을시 값을 넣지 않는다.
+			}		
+				
+			//alert(select_goods_qty[i].value);
+		}
+		objForm.method="post";
+	 	objForm.action="${contextPath}/order/orderAllCartGoods.do";
+		objForm.submit();
+	}
+	else if(length===1){
+		objForm.method="post";
+	 	objForm.action="${contextPath}/order/orderAllCartGoods.do";
+		objForm.submit();
+	}
+	//체크박스에 체크된 상품이 없을 경우
+	else{
+		/* order_goods_id=checked_goods.value;
 		order_goods_qty=cart_goods_qty.value;
-		cart_goods_qty.value=order_goods_id+":"+order_goods_qty;
-		//alert(select_goods_qty.value);
+		cart_goods_id.value="";
+		cart_goods_id.value=order_goods_id;
+		cart_goods_qty.value="";
+		cart_goods_qty.value=order_goods_qty;
+		console.log(cart_goods_qty.value);
+		//alert(select_goods_qty.value); */
+		
+		alert("주문 할 상품을 체크 해주세요..");
 	}
 		
- 	objForm.method="post";
- 	objForm.action="${contextPath}/order/orderAllCartGoods.do";
-	objForm.submit();
 }
 
-// 상품 전체 선택, 해제
-function selectAll(selectAll)  {
-	  const checkboxes 
-	     = document.querySelectorAll('input[type="checkbox"]');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked
-	  })
-	}
-	
 </script>
 </head>
 <body>
@@ -235,7 +252,7 @@ function selectAll(selectAll)  {
 					<td class="price"><span>${item.goods_price }원</span></td>
 					<td>
 					   <strong>
-					      <fmt:formatNumber  value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" />
+					      <fmt:formatNumber  value="${item.goods_sales_price}" type="number" var="discounted_price" />
 				            ${discounted_price}원(10%할인)
 				         </strong>
 					</td>
@@ -247,20 +264,20 @@ function selectAll(selectAll)  {
 					</td>
 					<td>
 					   <strong>
-					    <fmt:formatNumber  value="${item.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
+					    <fmt:formatNumber  value="${item.goods_sales_price*cart_goods_qty}" type="number" var="total_sales_price" />
 				         ${total_sales_price}원
 					</strong> </td>
 					<td>
-					      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
+					      <%-- <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
 					       	<img width="75" alt=""  src="${contextPath}/resources/image/btn_order.jpg">
-							</a><br>
+							</a> --%>
 						<a href="javascript:delete_cart_goods('${cart_id}');"> 
 						   <img width="75" alt=""
 							   src="${contextPath}/resources/image/btn_delete.jpg">
 					   </a>
 					</td>
 			</tr>
-				<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
+				<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*cart_goods_qty }" />
 				<c:set  var="totalGoodsNum" value="${totalGoodsNum+1 }" />
 			   </c:forEach>
 		    
