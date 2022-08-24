@@ -475,6 +475,8 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		}
 	}
 
+	
+	
 	@Override
 	@RequestMapping(value="/removeGoodsImage.do" ,method={RequestMethod.POST})
 	public void  removeGoodsImage(@RequestParam("goods_id") int goods_id,

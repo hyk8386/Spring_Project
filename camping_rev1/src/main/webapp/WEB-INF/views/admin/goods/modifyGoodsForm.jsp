@@ -430,10 +430,9 @@ function fn_modify_goods(goods_id, attribute){
 						${goods.goods_intro }
 						</textarea>
 						</td>
-						<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_intro')"/>
-						</td>
+					</tr>
+					<tr>
+						<td><input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_intro')"/></td>
 					</tr>
 			    </table>
 				</P>

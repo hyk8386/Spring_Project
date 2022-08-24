@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <html>
 <head>
@@ -174,16 +174,19 @@ function fn_enable_detail_search(r_search){
 		
 }
 
-//상세조회 버튼 클릭 시 수행
+//조회 버튼 클릭 시 수행
 function fn_detail_search(){
+	
 	var frm_delivery_list=document.frm_delivery_list;
 	
 	beginYear=frm_delivery_list.beginYear.value;
 	beginMonth=frm_delivery_list.beginMonth.value;
 	beginDay=frm_delivery_list.beginDay.value;
+	
 	endYear=frm_delivery_list.endYear.value;
 	endMonth=frm_delivery_list.endMonth.value;
 	endDay=frm_delivery_list.endDay.value;
+	
 	search_type=frm_delivery_list.s_search_type.value;
 	search_word=frm_delivery_list.t_search_word.value;
 
@@ -214,7 +217,7 @@ function fn_detail_search(){
     formObj.appendChild(i_search_word);
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="/bookshop01/admin/member/memberDetail.do";
+    formObj.action="/camping/admin/member/memberDetail.do";
     formObj.submit();
 	
 }
@@ -222,10 +225,10 @@ function fn_detail_search(){
 </head>
 <body>
 	<H3>회원 조회</H3>
-	<form name="frm_delivery_list" >	
+	<form name="frm_delivery_list" action="${contextPath }/admin/member/adminMemberMain.do" method="post">	
 		<table cellpadding="10" cellspacing="10"  >
 			<tbody>
-	<tr>
+				<tr>
 					<td>동록 일자:<input type="text" name="beginYear" size="4" value="${beginYear }" />년 
 								<input type="text" name="beginMonth" size="4" value="${beginMonth}" />월 
 								<input type="text" name="beginDay" size="4" value="${beginDay}" />일 
@@ -235,17 +238,24 @@ function fn_detail_search(){
 								<input type="text" size="4" value="${endDay }" />일
 					</td>
 				</tr>
+				
+				
 				<tr>
 				  <td>
 				    <select name="s_search_type"  >
 						<option value="all" checked>전체</option>
-						<option value="member_name">회원이름</option>
-						<option value="member_id">회원아이디</option>
-						<option value="member_hp_num">회원휴대폰번호</option>
-						<option value="member_addr">회원주소</option>
+						<option value="member_name">이름</option>
+						<option value="member_id">아이디</option>
+						<option value="member_hp_num">휴대폰번호(뒷4자리)</option>
+						<option value="member_addr">주소</option>
 					</select>
+					
+					
 					<input  type="text"  size="30" name="t_search_word"  />  
-					<input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()"  />
+					<!-- <input  type="button"  value="조회" name="btn_search" onClick="fn_detail_search()"  /> -->
+					<input  type="submit"  value="조회" name="btn_search" />
+					
+					
 				  </td>
 				</tr>				
 			</tbody>
@@ -310,7 +320,9 @@ function fn_detail_search(){
 				</tr>
 		</c:forEach>
 	</c:otherwise>
-  </c:choose>	
+  </c:choose>
+  
+  	
          <tr>
              <td colspan=8 class="fixed">
                  <c:forEach   var="page" begin="1" end="10" step="1" >
@@ -323,30 +335,12 @@ function fn_detail_search(){
 		         </c:if> 
 	      		</c:forEach> 
            </td>
-        </tr>  		   
+        </tr> 
+        
+         		   
 		</tbody>
 	</table>
   </form>   
-  
-  	
-<%-- 	<div class="clear"></div>
-<c:choose>
- <c:when test="${not empty order_goods_list }">	
-   <DIV id="page_wrap">
-		 <c:forEach   var="page" begin="1" end="10" step="1" >
-		         <c:if test="${section >1 && page==1 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
-		         </c:if>
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-		         <c:if test="${page ==10 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
-		         </c:if> 
-	      </c:forEach> 
-	</DIV>	
- </c:when>
-</c:choose> --%>
-
-
 </body>
 </html>
 

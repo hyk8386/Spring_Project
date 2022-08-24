@@ -288,7 +288,7 @@ function fn_detail_search(){
 		<table>
 			<tbody>
 				<tr>
-					<td>입고 일자:<input type="text" name="beginYear" size="4" value="${beginYear }" />년 
+					<td>주문 일자:<input type="text" name="beginYear" size="4" value="${beginYear }" />년 
 								<input type="text" name="beginMonth" size="4" value="${beginMonth}" />월 
 								<input type="text" name="beginDay" size="4" value="${beginDay}" />일 
 								&nbsp; ~ 
@@ -316,9 +316,6 @@ function fn_detail_search(){
 					<!-- <input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()" /> -->
 					<input type="submit"  value="조회" name="btn_search"  />
 					
-					
-					
-					
 				  </td>
 				</tr>				
 			</tbody>
@@ -327,6 +324,8 @@ function fn_detail_search(){
 	</div>
 	
 <div class="clear"></div>
+
+
 <table class="list_view">
 		<tbody align=center >
 			<tr style="background:#33ff00" >
