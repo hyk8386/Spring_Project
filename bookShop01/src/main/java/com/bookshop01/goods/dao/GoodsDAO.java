@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.goods.vo.ReviewVO;
 
 public interface GoodsDAO {
 	public List<GoodsVO> selectGoodsList(String goodsStatus ) throws DataAccessException;
@@ -13,4 +14,6 @@ public interface GoodsDAO {
 	public GoodsVO selectGoodsDetail(String goods_id) throws DataAccessException;
 	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException;
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
+	
+	public List<ReviewVO> selectGoodsReview(String goods_id) throws DataAccessException;
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.goods.vo.ReviewVO;
 
 @Repository("goodsDAO")
 public class GoodsDAOImpl  implements GoodsDAO{
@@ -44,6 +45,12 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException{
 		List<ImageFileVO> imageList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goods_id);
 		return imageList;
+	}
+	
+	@Override
+	public List<ReviewVO> selectGoodsReview(String goods_id) throws DataAccessException{
+		List<ReviewVO> reviewList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsReview", goods_id);
+		return reviewList;
 	}
 	
 }

@@ -35,7 +35,14 @@
 	   <result property="fileType" column="fileType" />
 	</resultMap>
 	
-
+	<resultMap type="ReviewVO" id="reviewResult">
+		<result property="num" column="num"/>
+		<result property="id" column="id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="review" column="review"/>
+		<result property="score" column="score"/>
+		<result property="regDate" column="regDate"/>
+	</resultMap>
 	
    
       <select id="selectGoodsList" parameterType="String" resultMap="goodsResult"   >
@@ -84,6 +91,13 @@
         where         
         goods_title like '%'|| #{keyword} || '%'
         order by goods_creDate desc
+		]]>
+	</select>
+	
+	<select id="selectGoodsReview" resultMap="reviewResult" parameterType="String">
+		<![CDATA[
+        select num, id, review, score, regDate
+        	from t_goods_review where goods_id=#{goods_id}
 		]]>
 	</select>
 	

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bookshop01.goods.dao.GoodsDAO;
 import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
+import com.bookshop01.goods.vo.ReviewVO;
 
 @Service("goodsService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -37,6 +38,8 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsMap.put("goodsVO", goodsVO);
 		List<ImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(_goods_id);
 		goodsMap.put("imageList", imageList);
+		List<ReviewVO> reviewList = goodsDAO.selectGoodsReview(_goods_id);
+		goodsMap.put("reviewList", reviewList);
 		return goodsMap;
 	}
 	

@@ -7,6 +7,8 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="goods"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
+<c:set var="reviewList"  value="${goodsMap.reviewList }"  />
+
  <%
      //치환 변수 선언합니다.
       pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -222,11 +224,12 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	<div id="container">
 		<ul class="tabs">
 			<li><a href="#tab1">상품 소개</a></li>
-<!-- 			<li><a href="#tab2">저자소개</a></li>
+ 			<!-- <li><a href="#tab2">저자소개</a></li>
 			<li><a href="#tab3">책목차</a></li>
 			<li><a href="#tab4">출판사서평</a></li>
-			<li><a href="#tab5">추천사</a></li>
-			<li><a href="#tab6">리뷰</a></li> -->
+			<li><a href="#tab5">추천사</a></li> -->
+			<li><a href="#tab6">리뷰</a></li> 
+			<li><a href="#tab7">리뷰 작성</a></li> 
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
@@ -257,8 +260,56 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 				<p>${fn:replace(goods.goods_recommendation,crcn,br) }</p>
 			</div>
 			<div class="tab_content" id="tab6">
-				<h4>리뷰</h4>
+				<table class="list_view">
+					<tbody align=center >
+					<tr>
+						<td>글번호</td>
+						<td>작성자</td>
+						<td>리뷰</td>
+						<td>평점</td>
+						<td>작성일</td>
+					</tr>
+					<c:choose>
+						<c:when test="${reviewList == null }">
+							<tr height="10">
+								<td colspan="4">
+									<p align="center">
+										<b><span style="font-size: 9pt;"> 등록된 글이 없습니다.</span></b>
+									</p>
+								</td>
+							</tr>
+						</c:when>
+						<c:when test="${reviewList != null}">
+							<c:forEach var="article" items="${reviewList }" varStatus="articleNum">
+								<tr align="center">
+									<td  width="5%">${article.num}</td>
+									<td width="10%">${article.id }</td>
+									<td align="left" width="35%">
+										<span style="padding-right: 30px"></span>
+										${article.review }
+									</td>
+									<td width="10%">
+										${article.score }
+									</td>
+									<td width="10%">
+										<fmt:formatDate value="${article.regDate }"/>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
+					</tbody>
+				</table>
 			</div>
+			<div class="tab_content" id="tab7">
+				<textarea rows="10" cols="100%"></textarea>
+			</div>
+			<%-- <div id="search" >
+				<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >
+					<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()" placeholder="Search"> 
+					<input type="submit" name="search" class="btn1"  value="검색">
+				</form>
+			</div> --%>
 		</div>
 	</div>
 	<div class="clear"></div>
