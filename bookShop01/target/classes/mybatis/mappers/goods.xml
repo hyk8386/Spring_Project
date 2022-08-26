@@ -97,9 +97,18 @@
 	<select id="selectGoodsReview" resultMap="reviewResult" parameterType="String">
 		<![CDATA[
         select num, id, review, score, regDate
-        	from t_goods_review where goods_id=#{goods_id}
+        	from t_goods_review 
+        	where goods_id=#{goods_id}
+        	order by score desc
 		]]>
 	</select>
 	
+	<insert id="insertReview" parameterType="reviewVO">
+		<![CDATA[
+		    	insert into t_goods_review
+		        			values((select max(num) from t_goods_review)+1,
+		        			#{id},#{goods_id}, #{review}, #{score}, sysdate)
+    	]]>
+	</insert>
 
 </mapper>

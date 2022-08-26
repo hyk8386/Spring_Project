@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.goods.vo.ReviewVO;
 
 public interface GoodsService {
 	
@@ -13,4 +14,5 @@ public interface GoodsService {
 	
 	public List<String> keywordSearch(String keyword) throws Exception;
 	public List<GoodsVO> searchGoods(String searchWord) throws Exception;
+	public int insertReview(ReviewVO reviewVO) throws Exception;
 }

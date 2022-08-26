@@ -16,4 +16,5 @@ public interface GoodsDAO {
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
 	
 	public List<ReviewVO> selectGoodsReview(String goods_id) throws DataAccessException;
+	public int insertReview(ReviewVO reviewVO) throws DataAccessException;
 }

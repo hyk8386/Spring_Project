@@ -71,6 +71,53 @@
 			}
 		}); //end ajax	
 	}
+	
+	function add_review(goods_id, form) {
+		
+		var _isLogOn=document.getElementById("isLogOn");
+		var isLogOn=_isLogOn.value;
+		
+		if(!isLogOn){
+			alert("로그인 후 이용");
+		}
+		var review = form.review.value;
+		var score = parseFloat(form.score.value);
+		
+		if(!(score >= 0.0 && score <=5.0)){
+			alert("알맞은 범위의 평점을 적어주세요");
+			return;
+		}
+		$.ajax({
+			type : "post",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${contextPath}/goods/addReview.do",
+			data : {
+				goods_id : goods_id,
+				score : score,
+				review : review
+			},
+			success : function(data, textStatus) {
+				//alert(data);
+			//	$('#message').append(data);
+				if(data.trim()=='add_success'){
+					alert('작성 완료!!');
+					location.reload();
+				}
+				else if(data.trim()=='add_fail'){
+					alert('작성에 실패했습니다.');
+				}
+				
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+			}
+		}); //end ajax	
+	}
+	
+	
 
 	function imagePopup(type) {
 		if (type == 'open') {
@@ -302,7 +349,14 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 				</table>
 			</div>
 			<div class="tab_content" id="tab7">
-				<textarea rows="10" cols="100%"></textarea>
+				<form>
+					<input type="text" size="20" name="score"> 
+					<textarea rows="10" cols="100%" maxlength="2000" name="review"></textarea>
+					<input type="button" value="리뷰 작성" onClick="add_review(${goods.goods_id},this.form)"/>
+					<input type="reset" value="다시 작성"/>
+				</form>
+
+				
 			</div>
 			<%-- <div id="search" >
 				<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >

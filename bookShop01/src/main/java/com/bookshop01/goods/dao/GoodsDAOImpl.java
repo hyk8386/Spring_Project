@@ -53,4 +53,9 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		return reviewList;
 	}
 	
+	@Override
+	public int insertReview(ReviewVO reviewVO) throws DataAccessException{
+		return (Integer)sqlSession.insert("mapper.goods.insertReview", reviewVO);
+	}
+	
 }

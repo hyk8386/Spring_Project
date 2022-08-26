@@ -53,5 +53,8 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsList;
 	}
 	
+	public int insertReview(ReviewVO reviewVO) throws Exception{
+		return goodsDAO.insertReview(reviewVO);
+	}
 	
 }
