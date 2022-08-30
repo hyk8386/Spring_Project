@@ -31,5 +31,18 @@ public class MemberDAOImpl  implements MemberDAO{
 		return result;
 	}
 	
+<<<<<<< .merge_file_a07688
+=======
+	@Override
+	public void delete(String memberId) throws Exception {
+		sqlSession.delete("mapper.member.delete", memberId);
+		
+	}
+	
+	public String returnPW(String memberId) throws Exception{
+		return sqlSession.selectOne("mapper.member.returnPW",memberId);
+	}
+	
+>>>>>>> .merge_file_a03692
 	
 }

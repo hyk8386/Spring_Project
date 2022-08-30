@@ -29,5 +29,19 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String overlapped(String id) throws Exception{
 		return memberDAO.selectOverlappedID(id);
+<<<<<<< .merge_file_a09908
+=======
+		
+		
+	}
+
+	public void delete(String memberId) throws Exception {
+		memberDAO.delete(memberId);
+		
+	}
+	
+	public String pwCheck(String memberId) throws Exception{
+		return memberDAO.returnPW(memberId);
+>>>>>>> .merge_file_a02072
 	}
 }
