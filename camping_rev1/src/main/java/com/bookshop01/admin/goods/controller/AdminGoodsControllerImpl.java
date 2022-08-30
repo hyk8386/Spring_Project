@@ -77,7 +77,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		//beginDate_tn=tempDate[0];
 		endDate=tempDate[1];
 		//dateMap.put("beginDate1", beginDate1);
-		dateMap.put("endDate", endDate);
+		//dateMap.put("endDate", endDate);
 		
 		
 		if(beginYear ==null) {
