@@ -11,4 +11,10 @@ public interface BoardDAO {
 		public List selectBoardList() throws DataAccessException ;
 		
 		public BoardVO textView(int bno) throws DataAccessException ;
+		
+		public int deleteTextView(int bno) throws DataAccessException;
+		
+		public int inerstTextView(BoardVO boardVO) throws DataAccessException;
+		
+		public int updateTextView(BoardVO boardVO) throws DataAccessException;
 }

@@ -29,4 +29,22 @@ public class BoardDAOImpl implements BoardDAO{
 		return textView;
 	}
 
+	@Override
+	public int deleteTextView(int bno) throws DataAccessException {
+		int result = sqlSession.delete("mapper.admin.board.deleteTextView", bno);
+		return result;
+	}
+
+	@Override
+	public int inerstTextView(BoardVO boardVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.admin.board.insertTextView",boardVO);
+		return result;
+	}
+
+	@Override
+	public int updateTextView(BoardVO boardVO) throws DataAccessException {
+		int result = sqlSession.update("mapper.admin.board.updateTextView", boardVO);
+		return result;
+	}
+
 }

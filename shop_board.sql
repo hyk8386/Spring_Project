@@ -22,6 +22,12 @@ select*from t_board where bno>0
 insert into t_board
 values((select * from (select NVL(max(bno),0)+1 from t_board) next), '제목을 입력' , '내용을 입력', '작성자', sysdate, sysdate );
 
-delete from t_board where bno=7;
+delete from t_board where bno=14;
+
+
+update t_board
+set title='김지호', content='김지호', UPDATEDATE=sysdate
+where bno=9;
+
 
 commit;

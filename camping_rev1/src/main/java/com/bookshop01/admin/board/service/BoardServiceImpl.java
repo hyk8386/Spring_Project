@@ -29,6 +29,24 @@ public class BoardServiceImpl implements BoardService{
 		return textView;
 	}
 
+	@Override
+	public int removeTextView(int bno) throws Exception {
+		int result = boardDAO.deleteTextView(bno);
+		return result;
+	}
+
+	@Override
+	public int addTextView(BoardVO boardVO) throws Exception {
+		int result = boardDAO.inerstTextView(boardVO);
+		return result;
+	}
+
+	@Override
+	public int modTextView(BoardVO boardVO) throws Exception {
+		int result = boardDAO.updateTextView(boardVO);
+		return result;
+	}
+
 
 
 }

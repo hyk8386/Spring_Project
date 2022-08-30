@@ -15,31 +15,31 @@
 </head>
 <body>
 	<form action="#">
-		<table>
+		<h1>공지사항 리스트</h1>
+		<br>
+		<table width="750">
 			<tr>
-				 <td>번호</td>
-				 <td>제목</td>
-				 <td>내용</td>
-				 <td>작성자</td>
-				 <td>등록일자</td>
-				 <!-- <td>수정일자</td> -->
+				 <td align="center" width="30" border="1">글번호</td>
+				 <td width="250">제목</td>
+				 <!-- <td width="150">내용</td> -->
+				 <td width="30">작성자</td>
+				 <td width="40">등록일자</td>
+				 
 			</tr>
 			<c:forEach var="boardList" items="${boardList}" varStatus="status">
 			<tr>
-				 <td><c:out value="${status.count }"></c:out></td>
-				 <%-- <td>${boardList.bno }</td> --%>
+				 <td align="center"><c:out value="${status.count }"></c:out></td>
 				 <td><a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno }">${boardList.title }</a></td>
-				 <td>${boardList.content }</td>
+				 <%-- <td>${boardList.content }</td> --%>
 				 <td>${boardList.writer }</td>
 				 <td>${boardList.regdate }</td>
-				 <%-- <td>${boardList.updateDate }</td> --%>
-				 
 			</tr>
 			</c:forEach>
-			
+			</table>
+			<table>
 			<tr>
 				<td>
-				<button type="button">글쓰기</button>
+				 <button type="button" onclick="location.href='${contextPath}/admin/board/addtextform.do';">글쓰기</button> 
 				<tr>
 			</tr>
 		</table>

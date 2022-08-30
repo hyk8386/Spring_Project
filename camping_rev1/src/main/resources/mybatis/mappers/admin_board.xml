@@ -23,11 +23,34 @@
    </select>
   
  <!--해당 게시글 textview --> 
-      <select id="textview" resultType="boardVO" parameterType="int">
+    <select id="textview" resultType="boardVO" parameterType="int">
   	 <![CDATA[
    		select*from t_board 
    		where bno=#{bno} 
    	]]>
    </select>
+    
+   <delete id="deleteTextView" parameterType="int">
+   	<![CDATA[
+   		delete from t_board 
+   		where bno=#{bno} 
+   	]]>
+   </delete> 
+   
+   <insert id="insertTextView" parameterType="boardVO">
+   <![CDATA[
+   		insert into t_board
+		values((select * from (select NVL(max(bno),0)+1 from t_board) next), #{title} , #{content}, #{writer}, sysdate, sysdate ) 
+   	]]>
+   </insert>
+ 
+   <update id="updateTextView" parameterType="boardVO">
+   	<![CDATA[
+   		update t_board
+		set title=#{title}, content=#{content},updatedate=sysdate
+		where bno=#{bno}
+   ]]>
+   </update>
+ 
  
 </mapper>

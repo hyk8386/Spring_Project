@@ -81,7 +81,7 @@
 		 <c:if test="${status.count <= 5 }"> 
 			<tr>
 				<td>
-					<a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno}">${status.count}</a>
+					<a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno}">&nbsp; ${status.count}.&nbsp;</a>
 				</td>
 				<td>
 					<a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno}">${boardList.title}</a>
