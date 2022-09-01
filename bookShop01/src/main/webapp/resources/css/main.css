@@ -1,9 +1,17 @@
 @font-face {
+<<<<<<< .merge_file_a01152
 	font-family: 'Poppins', sans-serif;
 	src: local("?"), url(../imgs/nanum.woff) format("woff"), url(../imgs/nanum.ttf) format("truetype");
 }
 * {
 	margin: 0px; padding: 0px; vertical-align: middle; font-family: 'Poppins', sans-serif;
+=======
+	font-family: NanumGothic;
+	src: local("?"), url(../imgs/nanum.woff) format("woff"), url(../imgs/nanum.ttf) format("truetype");
+}
+* {
+	margin: 0px; padding: 0px; vertical-align: middle;
+>>>>>>> .merge_file_a10360
 }
 body {
 	background-position: top; margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: "Dotum", Arial,serif; font-size: 1em; background-image: url("../imgs/body_back.gif"); background-repeat: repeat-x; background-color: rgb(255, 255, 255);
@@ -44,6 +52,7 @@ header #head_link li {
 #head_link .no_line {
 	border-right-color: currentColor; border-right-width: medium; border-right-style: none;
 }
+<<<<<<< .merge_file_a01152
 
 header #search {
 	margin: 20px 10px 0px 0px; padding: 0px; float: right; 
@@ -56,6 +65,17 @@ header #search .btn1 {
 }
 
 
+=======
+header #search {
+	margin: 20px 10px 0px 0px; padding: 0px; float: right;
+}
+header #search .main_input {
+	padding: 0px 5px; border: 3px solid rgb(51, 102, 153); border-image: none; width: 260px; height: 22px;
+}
+header #search .btn1 {
+	border: 1px solid rgb(51, 102, 153); border-image: none; width: 55px; height: 28px; color: rgb(255, 255, 255); margin-left: 2px; background-color: rgb(51, 102, 153);
+}
+>>>>>>> .merge_file_a10360
 aside {
 	width: 205px; float: left;
 }
@@ -72,16 +92,22 @@ nav ul li a {
 	display: block;
 }
 nav ul li h3 {
+<<<<<<< .merge_file_a01152
 	background-position: top; padding: 5px 20px; border-radius: 20px; border: 1px solid rgb(15, 15, 15); border-image: none; text-transform: capitalize; font-size: 14px; background-image: url("../imgs/nav_back.jpg"); background-repeat: repeat-x; color: black; font-family: 'Poppins', sans-serif;
 }
 
 
+=======
+	background-position: top; padding: 5px 20px; border-radius: 20px; border: 1px solid rgb(204, 204, 204); border-image: none; text-transform: capitalize; font-size: 14px; background-image: url("../imgs/nav_back.jpg"); background-repeat: repeat-x; background-color: rgb(229, 229, 229);
+}
+>>>>>>> .merge_file_a10360
 nav ul li ul {
 	margin: 10px 0px 0px;
 }
 nav ul li ul li {
 	padding: 0px 0px 0px 20px; line-height: 2em;
 }
+<<<<<<< .merge_file_a01152
 	margin: 10px 15px;
 }
 #notice {
@@ -89,12 +115,26 @@ nav ul li ul li {
 }
 #notice h2 {
 	background-position: top; padding: 5px 20px; border-bottom-color: rgb(15, 15, 15); border-bottom-width: 1px; border-bottom-style: solid; border-image: none; text-transform: capitalize; font-size: 14px; background-image: url("../imgs/nav_back.jpg"); background-repeat: repeat-x; color: black; font-family: 'Poppins', sans-serif;
+=======
+aside #banner {
+	margin: 10px 15px;
+}
+#notice {
+	margin: 20px 0px 15px 15px; font-size: 0.75em;
+}
+#notice h2 {
+	background-position: left; padding: 2px 0px 5px 10px; color: rgb(51, 102, 153); font-family: "NanumGothic"; font-size: 1.2em; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 1px; border-bottom-style: solid; background-image: url("../imgs/notice_h2.gif"); background-repeat: no-repeat;
+>>>>>>> .merge_file_a10360
 }
 #notice ul {
 	list-style: none; margin: 10px 0px 0px;
 }
 #notice ul li {
+<<<<<<< .merge_file_a01152
 	background-position: left; padding: 0px 0px 0px 7px; line-height: 2em; background-image: url("../imgs/notice_li.gif"); background-repeat: no-repeat; font-size: 0.7em;
+=======
+	background-position: left; padding: 0px 0px 0px 7px; line-height: 1.5em; background-image: url("../imgs/notice_li.gif"); background-repeat: no-repeat;
+>>>>>>> .merge_file_a10360
 }
 article {
 	margin: 20px 0px 0px 15px; width: 775px; float: right;
@@ -105,7 +145,11 @@ article {
 }
 
 article #ad_main_banner {
+<<<<<<< .merge_file_a01152
 	margin: 10px 0px; 
+=======
+	margin: 10px 0px;
+>>>>>>> .merge_file_a10360
 }
 article #ad_sub_banner {
 	margin: 10px 0px;
@@ -307,7 +351,11 @@ article h4 {
 }
 
 #detail_table table td.fixed_join {
+<<<<<<< .merge_file_a01152
 	width: 110px; font-weight: bold;
+=======
+	width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+>>>>>>> .merge_file_a10360
 }
 
 #detail_table ul {
@@ -371,7 +419,11 @@ ul.tabs li.active a:hover {
 	background: rgb(255, 255, 255); width: 100%; clear: both; border-top-color: currentColor; border-top-width: medium; border-top-style: none; float: left;
 }
 .tab_content {
+<<<<<<< .merge_file_a01152
 	padding: 10px 10px 20px; line-height: 1.8em; font-size: 0.75em; min-height: 400px;
+=======
+	padding: 10px 10px 20px; line-height: 1.8em; font-size: 0.75em;
+>>>>>>> .merge_file_a10360
 }
 .tab_content h4 {
 	background-position: left top; margin: 10px 0px; padding: 20px 0px 5px 35px; height: 30px; color: rgb(255, 255, 255); letter-spacing: 4px; font-family: "NanumGothic", Serif; font-size: 16px; font-weight: bold; background-image: url("../imgs/h4_back.png"); background-repeat: no-repeat;
@@ -405,7 +457,11 @@ footer img {
 }
 #sticky {
 	/* padding: 10px 5px; border-radius: 10px; top: 115px; width: 82px; font-size: 0.75em; float: right; position: relative; background-color: rgb(153, 153, 153); */
+<<<<<<< .merge_file_a01152
 	padding: 10px 5px;  top: 115px; width: 90px; font-size: 0.65em; float: right; position: relative; background-color:#ffffff; border: medium; border-color: black; border: solid;
+=======
+	padding: 10px 5px; border-radius: 10px; top: 115px; width: 82px; font-size: 0.75em; float: right; position: relative; background-color:#66cc00;
+>>>>>>> .merge_file_a10360
 	
 }
 #sticky ul {
@@ -415,7 +471,11 @@ footer img {
 	background-position: bottom; background-image: url("../imgs/sticky_line.gif"); background-repeat: repeat-x;
 }
 #sticky ul li a {
+<<<<<<< .merge_file_a01152
 	padding: 3px 0px; height: 27px; color: #000000255255255; display: block;
+=======
+	padding: 3px 0px; height: 27px; color: rgb(255, 255, 255); display: block;
+>>>>>>> .merge_file_a10360
 }
 #sticky .recent {
 	background: rgb(255, 255, 255); margin: 7px 0px; padding: 5px 0px; border-radius: 5px; text-align: center;
@@ -513,7 +573,11 @@ footer img {
 
 
 .detail_table table td.fixed_join {
+<<<<<<< .merge_file_a01152
 	width: 110px; font-weight: bold;
+=======
+	width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+>>>>>>> .merge_file_a10360
 }
 
 .detail_table ul {
@@ -557,11 +621,19 @@ article h1_TITLE {
 	padding: 0px 0px 5px; letter-spacing: 2px; font-family: "NanumGothic"; font-size: 1.1em; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 2px;
 }
 
+<<<<<<< .merge_file_a01152
+=======
+
+>>>>>>> .merge_file_a10360
 .main_book {
 	width: auto; padding-top: 7px; font-size: 0.75em;
 }
 .main_book h3 {
+<<<<<<< .merge_file_a01152
 	margin: 0px 0px 5px; padding: 0px 0px 5px; color: rgb(15, 15, 15); text-transform: uppercase; font-family: 'Poppins', sans-serif; font-size: 1.2em; border-bottom-color: rgb(15, 15, 15); border-bottom-width: 1px; border-bottom-style: solid;
+=======
+	margin: 0px 0px 5px; padding: 0px 0px 5px; color: rgb(51, 102, 153); text-transform: uppercase; font-family: "NanumGothic", Serif; font-size: 1.2em; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 1px; border-bottom-style: solid;
+>>>>>>> .merge_file_a10360
 }
 
 .main_book .book {
@@ -594,7 +666,10 @@ article h1_TITLE {
 .main_book .book .title {
 	font-weight: bold;
 }
+<<<<<<< .merge_file_a01152
 
+=======
+>>>>>>> .merge_file_a10360
 #suggest{
 display:none; position: absolute; left: 830px; top:80px; border: 0.1px  solid #87cb42; z-index:3;font-weight: bold;background-color:#ffffff; 	
 	

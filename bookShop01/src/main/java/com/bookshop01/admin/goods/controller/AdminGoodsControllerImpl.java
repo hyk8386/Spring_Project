@@ -36,17 +36,22 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	@Autowired
 	AdminGoodsService adminGoodsService;
 	
+<<<<<<< HEAD
 //---------------------상품조회--------------------------------------------------------------------------//	
 	//관리자 로그인 후 header.jsp에관리자버튼 생성되고 관리자 버튼 클릭시  
 	//${contextPath}/admin/goods/adminGoodsMain.do으로 경로지정 되어 있음.
 	//1. 상품조회 창이 나타남.
 	//2. 상품등록하기 버튼이 있음.
 
+=======
+//---------------------------------- 상 품 조 회 ----------------------------------------------------------------//	
+>>>>>>> jiho
 	@RequestMapping(value="/adminGoodsMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
 									   @RequestParam(value="search_condition", required = false) String search_condition,
 									   @RequestParam(value="search",required = false) String search,
 			                           HttpServletRequest request, HttpServletResponse response)  throws Exception {
+<<<<<<< HEAD
 		//dateMap을 전달받음
 		//1. adminGoodsMain.jsp에서 자바스크립트에서 <input type="??" name="fixedSearchPeriod" value="fixeSearchPeriod" /> value값을 얻는다.
 		
@@ -57,6 +62,15 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		session=request.getSession();
 		
 		session.setAttribute("side_menu", "admin_mode"); //무엇을 위한 값 저장인가?
+=======
+		
+		// url 추출
+		String viewName=(String)request.getAttribute("viewName"); 
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session=request.getSession();
+		session=request.getSession();
+		session.setAttribute("side_menu", "admin_mode"); 
+>>>>>>> jiho
 		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
@@ -65,6 +79,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		String beginMonth=dateMap.get("beginMonth");
 		String beginDay=dateMap.get("beginDay");
 		
+<<<<<<< HEAD
 
 		// 조회기간 세팅
 		String endDate = null;
@@ -76,6 +91,14 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		//dateMap.put("endDate", endDate);
 		
 		
+=======
+		// 조회기간 추출
+		String endDate = null;
+		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(","); //현재날짜 추출 함수
+		endDate=tempDate[1];
+		
+		// 시작날짜가 null인 경우 년도 출력
+>>>>>>> jiho
 		if(beginYear ==null) {
 			beginYear = "2018";
 			beginMonth = "01";
@@ -84,6 +107,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		String beginDate = beginYear +"-"+ beginMonth +"-"+beginDay;
 		
+<<<<<<< HEAD
 		//dataMap으로 넘겨받은 값 출력하기
 		/*
 		System.out.println("section="+section); //null
@@ -98,6 +122,9 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		
 		//dateMap에 저장 왜 저장하니?? 어디에 사용????????
+=======
+		//dateMap에 저장
+>>>>>>> jiho
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
 		
@@ -115,8 +142,12 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 	
 	
+<<<<<<< HEAD
 //------ 검색 값 유효성 검사--------------------------------------------------------------//
 		
+=======
+//-------------------콤보 박스 값 유효성 검사--------------------------------------------------------------
+>>>>>>> jiho
 		try {
 			
 			if(search_condition.equals("all")) {
@@ -150,17 +181,23 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			} catch (Exception e) {
 			
 		}
+<<<<<<< HEAD
 		
 		
 		
 
 //---------------쿼리문 매개변수 저장------------------------------------------------------------------------------------//
+=======
+
+//------------------ select 쿼리문 매개변수 저장--------------------------------------------//
+>>>>>>> jiho
 		condMap.put("section",section);
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
 		condMap.put("search_condition",search_condition);
 		
+<<<<<<< HEAD
 		
 		
 		
@@ -174,6 +211,15 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		
 //-----------------조회기간을 월/달/일로 나누어 저장하여 jsp에 전달---------------------------------------------//
+=======
+//--------------------쿼리문 실행 --------------------------------------------------------//
+	
+		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
+		mav.addObject("newGoodsList", newGoodsList); // jsp에서 뿌려줘야하기때문에 저장
+		
+//-----------------조회기간 및 상태정보 jsp로 전달---------------------------------------------//
+		
+>>>>>>> jiho
 		String beginDate1[]=beginDate.split("-"); 	
 		String endDate2[]=endDate.split("-");
 		
@@ -185,7 +231,10 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		mav.addObject("endDay",endDate2[2]);
 		mav.addObject("search", search);
 		mav.addObject("search_condition", search_condition);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> jiho
 		mav.addObject("section", section);			// section = 1 String타입이다.
 		mav.addObject("pageNum", pageNum);			// pageNum = 1 String타입이다.
 		return mav;
@@ -198,6 +247,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 //------------------------------------------------------------------------------------------------------------------//	
 //------------------------상품 등록 ---------------------------------------------------------//
 	
+//------------------------상품 등록 ---------------------------------------------------------//
 	@RequestMapping(value="/addNewGoods.do" ,method={RequestMethod.POST})
 	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		
@@ -207,11 +257,19 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		Map newGoodsMap = new HashMap();
 		
+<<<<<<< HEAD
 		Enumeration enu=multipartRequest.getParameterNames();
 		while(enu.hasMoreElements()){
 			String name=(String)enu.nextElement(); // 태그 name
 			String value=multipartRequest.getParameter(name); // name해당하는 값
 			newGoodsMap.put(name,value);
+=======
+		Enumeration enu=multipartRequest.getParameterNames();	// 태그 name 추출
+		while(enu.hasMoreElements()){
+			String name=(String)enu.nextElement(); 				// 태그 name을 저장
+			String value=multipartRequest.getParameter(name); 	// name해당하는 value를 저장
+			newGoodsMap.put(name,value);						// map형태로 저장하여 쿼리문의 매개변수로 선언
+>>>>>>> jiho
 		}
 		
 		HttpSession session = multipartRequest.getSession();
@@ -219,30 +277,38 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		String reg_id = memberVO.getMember_id();
 		
 		
-		List<ImageFileVO> imageFileList =upload(multipartRequest);
+		List<ImageFileVO> imageFileList =upload(multipartRequest);	// 이미지 이름을 추출하기 위한 upload함수 
 		if(imageFileList!= null && imageFileList.size()!=0) {
 			for(ImageFileVO imageFileVO : imageFileList) {
 				imageFileVO.setReg_id(reg_id);
 			}
-			newGoodsMap.put("imageFileList", imageFileList);
+			newGoodsMap.put("imageFileList", imageFileList);		//이미지의 이름을 저장함
 		}
 		
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+<<<<<<< HEAD
 //--------------------------쿼리문 실행 -----------------------------------------------------------------//
 // newGoodsMap에 들어있는 데이터
 //<태그 name,value> <"imageFileList", imageFileList> 이 값을 가지고 쿼리문 실행
 		
+=======
+		
+//--------------------------쿼리문 실행 -----------------------------------------------------------------//
+>>>>>>> jiho
 		try {
-			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
+			// newGoodsMap에 들어있는 데이터
+			//<태그 name,value> <"imageFileList", imageFileList> 이 값을 가지고 쿼리문 실행
+			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);	
+																		
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
-					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					imageFileName = imageFileVO.getFileName();			// 이미지파일 저장 경로 지정
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName); 
 					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
-					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+					FileUtils.moveFileToDirectory(srcFile, destDir,true);  
 				}
 			}
 			message= "<script>";

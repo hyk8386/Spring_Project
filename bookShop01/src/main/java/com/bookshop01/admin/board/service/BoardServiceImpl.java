@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bookshop01.admin.board.dao.BoardDAO;
 import com.bookshop01.admin.board.vo.BoardVO;
+<<<<<<< HEAD
+=======
+import com.bookshop01.admin.board.vo.Criteria;
+>>>>>>> jiho
 
 @Service("boardService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -47,6 +51,20 @@ public class BoardServiceImpl implements BoardService{
 		return result;
 	}
 
+<<<<<<< HEAD
 
+=======
+	@Override
+	public List<BoardVO> getList(Criteria cri) {
+		List<BoardVO> boardListPage = boardDAO.getListWithPaging(cri);
+		return boardListPage;
+	}
+
+	@Override
+	public int countBoardList() throws Exception {
+		int count = boardDAO.countBoardList();
+		return count;
+	}
+>>>>>>> jiho
 
 }

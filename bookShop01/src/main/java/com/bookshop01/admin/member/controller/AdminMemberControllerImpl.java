@@ -25,10 +25,14 @@ import com.bookshop01.member.vo.MemberVO;
 public class AdminMemberControllerImpl extends BaseController  implements AdminMemberController{
 	@Autowired
 	AdminMemberService adminMemberService;
+<<<<<<< HEAD
 	
 	
 	
 	// 회원 조회
+=======
+
+>>>>>>> jiho
 	@RequestMapping(value="/adminMemberMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
 									   @RequestParam(value="s_search_type", required = false) String s_search_type,
@@ -38,6 +42,10 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> jiho
 		System.out.println(viewName);
 		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
@@ -108,10 +116,14 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		
 	}
 	
+<<<<<<< HEAD
 	
 	
 	
 	
+=======
+
+>>>>>>> jiho
 	@RequestMapping(value="/memberDetail.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView memberDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
@@ -133,6 +145,8 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		String member_id=request.getParameter("member_id");
 		String mod_type=request.getParameter("mod_type");
 		String value =request.getParameter("value");
+		
+		
 		if(mod_type.equals("member_birth")){
 			val=value.split(",");
 			memberMap.put("member_birth_y",val[0]);

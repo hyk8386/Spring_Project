@@ -91,7 +91,15 @@
 	<div class="tab_container" id="container">
 		<ul class="tabs">
 			<li><a href="#tab1">상품정보</a></li>
+<<<<<<< HEAD
 			<li><a href="#tab4">상품소개</a></li>
+=======
+			<!-- <li><a href="#tab2">상품목차</a></li> -->
+			<!-- <li><a href="#tab3">상품저자소개</a></li> -->
+			<li><a href="#tab4">상품소개</a></li>
+			<!-- <li><a href="#tab5">출판사 상품 평가</a></li> -->
+			<!-- <li><a href="#tab6">추천사</a></li> -->
+>>>>>>> jiho
 			<li><a href="#tab7">상품이미지</a></li>
 		</ul>
 		<div class="tab_container">

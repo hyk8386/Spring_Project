@@ -8,6 +8,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop01.admin.board.vo.BoardVO;
+<<<<<<< HEAD
+=======
+import com.bookshop01.admin.board.vo.Criteria;
+>>>>>>> jiho
 
 
 @Repository("boardDAO")
@@ -47,4 +51,19 @@ public class BoardDAOImpl implements BoardDAO{
 		return result;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public List<BoardVO> getListWithPaging(Criteria cri) {
+		List<BoardVO> selectBoardListPage = sqlSession.selectList("mapper.admin.board.getListWithPaging",cri);
+		return selectBoardListPage;
+	}
+
+	@Override
+	public int countBoardList() throws DataAccessException {
+		int count = sqlSession.selectOne("mapper.admin.board.countBoardList");
+		return count;
+	}
+
+>>>>>>> jiho
 }

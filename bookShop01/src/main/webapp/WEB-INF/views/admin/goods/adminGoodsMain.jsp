@@ -58,6 +58,7 @@
 	<TABLE class="list_view">
 		<TBODY align=center>
 			<tr style="background: #33ff00">
+<<<<<<< HEAD
 				<td>제품번호</td>
 				<td>제품이름</td>
 				<!-- <td>저자</td> -->
@@ -65,6 +66,15 @@
 				<td>제품가격</td>
 				<td>입고일자</td>
 				<td>제조일</td>
+=======
+				<td>상품번호</td>
+				<td>상품이름</td>
+				<td>저자</td>
+				<td>출판사</td>
+				<td>상품가격</td>
+				<td>입고일자</td>
+				<td>출판일</td>
+>>>>>>> jiho
 			</tr>
 			<c:choose>
 				<c:when test="${empty newGoodsList }">
@@ -83,7 +93,11 @@
 								</a>
 							</TD>
 							
+<<<<<<< HEAD
 							<%-- <TD><strong>${item.goods_writer }</strong></TD> --%>
+=======
+							<TD><strong>${item.goods_writer }</strong></TD>
+>>>>>>> jiho
 							<TD><strong>${item.goods_publisher }</strong></TD>
 							<td><strong>${item.goods_sales_price }</strong></td>
 							<td><strong>${item.goods_credate }</strong></td>

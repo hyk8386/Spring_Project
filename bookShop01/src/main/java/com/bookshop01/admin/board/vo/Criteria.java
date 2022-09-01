@@ -13,7 +13,11 @@ public class Criteria {
 	private int amount;
 	
 	public Criteria() {
+<<<<<<< HEAD
 		this(1,10);
+=======
+		this(1,5);
+>>>>>>> jiho
 	}
 
 	public Criteria(int pageNum, int amount) {

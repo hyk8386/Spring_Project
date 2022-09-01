@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ez220404
+=======
+Built-By: ez220403
+>>>>>>> jiho
 Build-Jdk: 11.0.15.1
 Created-By: Maven Integration for Eclipse
 

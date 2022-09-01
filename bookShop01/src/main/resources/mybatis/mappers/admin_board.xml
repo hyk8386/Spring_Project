@@ -51,6 +51,30 @@
 		where bno=#{bno}
    ]]>
    </update>
+<<<<<<< HEAD
+=======
+   
+     <select id="getListWithPaging" resultType="boardVO">
+  	 <![CDATA[
+	   	select *
+		from(
+			select /*INDEX_DESC(t_board pk_board)*/
+			ROWNUM rn, bno, title, content, writer, regdate,updatedate
+			from t_board
+			where rownum <= #{pageNum} * #{amount}
+			order by bno desc
+			)
+		where rn >(#{pageNum}-1)*#{amount}
+   	 ]]>
+   </select>
+   
+   <select id="countBoardList" resultType="int">
+  	 <![CDATA[
+	   	select count(*)
+		from t_board
+   	 ]]>
+   </select>
+>>>>>>> jiho
  
  
 </mapper>

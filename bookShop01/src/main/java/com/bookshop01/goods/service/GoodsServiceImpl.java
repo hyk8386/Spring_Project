@@ -54,7 +54,10 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsList;
 	}
 	
+<<<<<<< HEAD
 	// 상품 상세페이지 리뷰
+=======
+>>>>>>> jiho
 	public int insertReview(ReviewVO reviewVO) throws Exception{
 		return goodsDAO.insertReview(reviewVO);
 	}

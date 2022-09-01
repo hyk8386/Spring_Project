@@ -85,7 +85,11 @@
 		 <c:if test="${status.count <= 5 }"> 
 			<tr>
 				<td>
+<<<<<<< HEAD
 					<a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno}">&nbsp; ${status.count}. </a>
+=======
+					<a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno}">${status.count}</a>
+>>>>>>> jiho
 				</td>
 				<td>
 					<a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno}">${boardList.title}</a>

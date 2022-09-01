@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+>>>>>>> jiho
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.admin.board.service.BoardService;
 import com.bookshop01.admin.board.vo.BoardVO;
+<<<<<<< HEAD
+=======
+import com.bookshop01.admin.board.vo.Criteria;
+import com.bookshop01.admin.board.vo.PageDTO;
+>>>>>>> jiho
 
 
 
@@ -29,13 +38,28 @@ public class BoardControllerImpl implements BoardController{
 	
 	@Override
 	@RequestMapping(value="/admin/board/boardList.do" ,method = RequestMethod.GET)
+<<<<<<< HEAD
 	public ModelAndView listBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+=======
+	public ModelAndView listBoard(Criteria cri,Model model,HttpServletRequest request, HttpServletResponse response) throws Exception {
+>>>>>>> jiho
 		String viewName = (String) request.getAttribute("viewName");
 		System.out.println(viewName);
 		
 		ModelAndView mav = new ModelAndView(viewName);
+<<<<<<< HEAD
 		List boardList = boardService.boardList();
 		mav.addObject("boardList", boardList);
+=======
+		
+		//List boardList = boardService.boardList();
+		int count = boardService.countBoardList();
+		
+		System.out.println(count);
+		mav.addObject("boardList", boardService.getList(cri));
+		mav.addObject("pageMaker", new PageDTO(cri, count));
+		//mav.addObject("boardList", boardList);
+>>>>>>> jiho
 		return mav;
 	}
 
@@ -111,6 +135,16 @@ public class BoardControllerImpl implements BoardController{
 		return mav;
 	}
 
+<<<<<<< HEAD
+=======
+	   @GetMapping("/list")
+	   public void list(Criteria cri,Model model) {
+	      
+	      model.addAttribute("list", boardService.getList(cri));
+	      model.addAttribute("pageMaker", new PageDTO(cri, 123));
+	      
+	   }
+>>>>>>> jiho
 
 }
 

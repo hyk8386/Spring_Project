@@ -3,15 +3,27 @@ package com.bookshop01.admin.board.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
+=======
+import org.springframework.ui.Model;
+>>>>>>> jiho
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.admin.board.vo.BoardVO;
+<<<<<<< HEAD
 
 public interface BoardController {
 	
 	public ModelAndView listBoard(HttpServletRequest request, HttpServletResponse response) throws Exception;
+=======
+import com.bookshop01.admin.board.vo.Criteria;
+
+public interface BoardController {
+	
+	public ModelAndView listBoard(Criteria cri,Model model,HttpServletRequest request, HttpServletResponse response) throws Exception;
+>>>>>>> jiho
 	
 	public ModelAndView textView(@RequestParam("bno") int bno,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	 
