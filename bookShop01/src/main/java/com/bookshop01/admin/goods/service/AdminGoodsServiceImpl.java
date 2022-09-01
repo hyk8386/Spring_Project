@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,15 +33,21 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		return goods_id;
 	}
 	
+	//상품조회를 위한 쿼리문
+	//condMap에는 session, pageNum, beginDate, endDate 값이 들어있다.
 	@Override
 	public List<GoodsVO> listNewGoods(Map condMap) throws Exception{
 		return adminGoodsDAO.selectNewGoodsList(condMap);
 	}
+	
+	//상품수정=상품상세보기 클릭시
 	@Override
 	public Map goodsDetail(int goods_id) throws Exception {
+		
 		Map goodsMap = new HashMap();
 		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(goods_id);
 		List imageFileList =adminGoodsDAO.selectGoodsImageFileList(goods_id);
+		
 		goodsMap.put("goods", goodsVO);
 		goodsMap.put("imageFileList", imageFileList);
 		return goodsMap;

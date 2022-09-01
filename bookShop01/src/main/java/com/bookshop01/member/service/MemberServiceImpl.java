@@ -15,22 +15,21 @@ import com.bookshop01.member.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDAO memberDAO;
-	
+	// 로그인
 	@Override
 	public MemberVO login(Map  loginMap) throws Exception{
 		return memberDAO.login(loginMap);
 	}
-	
+	// 회원 가입
 	@Override
 	public void addMember(MemberVO memberVO) throws Exception{
 		memberDAO.insertNewMember(memberVO);
 	}
 	
+	// 아이디 중복 체크
 	@Override
 	public String overlapped(String id) throws Exception{
 		return memberDAO.selectOverlappedID(id);
-<<<<<<< .merge_file_a09908
-=======
 		
 		
 	}
@@ -42,6 +41,5 @@ public class MemberServiceImpl implements MemberService {
 	
 	public String pwCheck(String memberId) throws Exception{
 		return memberDAO.returnPW(memberId);
->>>>>>> .merge_file_a02072
 	}
 }

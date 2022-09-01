@@ -32,39 +32,38 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	@Autowired
 	MemberVO memberVO;
 	
+	// 로그인
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam Map<String, String> loginMap,
+	public ModelAndView login(@RequestParam Map<String, String> loginMap, // ID와 PW를 Map에 저장
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		 memberVO=memberService.login(loginMap);
-		if(memberVO!= null && memberVO.getMember_id()!=null){
+		 memberVO=memberService.login(loginMap);	// SQL문으로 전달
+		if(memberVO!= null && memberVO.getMember_id()!=null){	// 회원 정보가 등록이 되어있는 경우
+			// 로그인 승인
 			HttpSession session=request.getSession();
 			session=request.getSession();
 			session.setAttribute("isLogOn", true);
 			session.setAttribute("memberInfo",memberVO);
 			
 			String action=(String)session.getAttribute("action");
+			// 비로그인 상태에서 주문하기를 클릭할 경우 로그인 창으로 이동이 되고 로그인 후 다시 주문화면으로 진행
 			if(action!=null && action.equals("/order/orderEachGoods.do")){
 				mav.setViewName("forward:"+action);
+			// 그 외에는 메인 화면으로 이동
 			}else{
 				mav.setViewName("redirect:/main/main.do");	
 			}
-			
-			
-			
+			// 아이디나 비밀번호를 잘못입력한 경우
 		}else{
-<<<<<<< .merge_file_a01332
-			String message="���̵�  ��й�ȣ�� Ʋ���ϴ�. �ٽ� �α������ּ���";
-=======
-			String message="���̵�  ��й�ȣ�� Ʋ���ϴ�. �ٽ� �α������ּ���";
->>>>>>> .merge_file_a02864
+			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
 			mav.addObject("message", message);
 			mav.setViewName("/member/loginForm");
 		}
 		return mav;
 	}
 	
+	// 로그아웃
 	@Override
 	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -76,9 +75,10 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		return mav;
 	}
 	
+	// 회원 가입
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
-	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
+	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO, // 회원 가입창에서 전송된 회원 정보를 _memberVO에 설정
 			                HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
@@ -87,23 +87,15 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-		    memberService.addMember(_memberVO);
+		    memberService.addMember(_memberVO);	// 회원 정보를 SQL문으로 전달
 		    message  = "<script>";
-<<<<<<< .merge_file_a01332
-		    message +=" alert('ȸ�� ������ ���ƽ��ϴ�.�α���â���� �̵��մϴ�.');";
-=======
-		    message +=" alert('ȸ�� ������ ���ƽ��ϴ�.�α���â���� �̵��մϴ�.');";
->>>>>>> .merge_file_a02864
+		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
 		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
 		    message += " </script>";
 		    
 		}catch(Exception e) {
 			message  = "<script>";
-<<<<<<< .merge_file_a01332
-		    message +=" alert('�۾� �� ������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
-=======
-		    message +=" alert('�۾� �� ������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���');";
->>>>>>> .merge_file_a02864
+		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요);";
 		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
 		    message += " </script>";
 			e.printStackTrace();
@@ -112,15 +104,18 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		return resEntity;
 	}
 	
+	// 아이디 중복 체크
 	@Override
 	@RequestMapping(value="/overlapped.do" ,method = RequestMethod.POST)
-	public ResponseEntity overlapped(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ResponseEntity overlapped(@RequestParam("id") String id,
+									HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ResponseEntity resEntity = null;
 		String result = memberService.overlapped(id);
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
 	
+	// 회원 탈퇴
 	@RequestMapping(value="/deleteView", method=RequestMethod.GET)
 	public String deleteView() throws Exception{
 		return "/member/deleteView";
@@ -136,13 +131,12 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	}
 	
     
-    //@RequestMapping(value="/pwCheck" , method=RequestMethod.POST)
+    // 비밀번호 체크
 	@RequestMapping(value="/pwCheck", method=RequestMethod.POST)
 	@ResponseBody
 	public String pwCheck(String member_pw, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session=request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("memberInfo");
-		System.out.println("ㅁㄴ은매ㅏ머ㅜㄹ히ㅏㅁㄴㅇㄴ아ㅜ리눙루");
 		String memberPw = memberService.pwCheck(memberVO.getMember_id());
 		
 		if(memberVO == null || !(member_pw.equals(memberPw)) ) {

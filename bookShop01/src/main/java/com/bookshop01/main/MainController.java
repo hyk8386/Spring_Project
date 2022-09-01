@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bookshop01.admin.board.service.BoardService;
 import com.bookshop01.common.base.BaseController;
 import com.bookshop01.goods.service.GoodsService;
 import com.bookshop01.goods.vo.GoodsVO;
@@ -23,6 +24,10 @@ import com.bookshop01.goods.vo.GoodsVO;
 public class MainController extends BaseController {
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private BoardService boardService;
+	
 
 	@RequestMapping(value= "/main/main.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -31,10 +36,13 @@ public class MainController extends BaseController {
 		String viewName=(String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
 		
+		List boardList = boardService.boardList();
 		session=request.getSession();
 		session.setAttribute("side_menu", "user");
 		Map<String,List<GoodsVO>> goodsMap=goodsService.listGoods();
+		session.setAttribute("boardList", boardList);
 		mav.addObject("goodsMap", goodsMap);
+		
 		return mav;
 	}
 }

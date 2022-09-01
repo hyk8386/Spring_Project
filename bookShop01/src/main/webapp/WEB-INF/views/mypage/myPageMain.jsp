@@ -129,7 +129,8 @@ function fn_cancel_order(order_id){
 
 <br><br><br>	
 <h1>계좌내역
-    <a href="#"> <img  src="${contextPath}/resources/image/btn_more_see.jpg" />  </a>
+    <%-- <a href="#"> <img  src="${contextPath}/resources/image/btn_more_see.jpg" />  </a> --%>
+    <button type="button" onClick="location.href='${contextPath }/mypage/myPageMain.do'">더 보기</button>
 </h1>
 <table border=0 width=100%  cellpadding=10 cellspacing=10>
   <tr>
@@ -137,17 +138,21 @@ function fn_cancel_order(order_id){
 	   예치금 &nbsp;&nbsp;  <strong>10000원</strong>
    </td>
     <td>
-	   쇼핑머니 &nbsp;&nbsp; <strong>9000원</strong>
+	   쿠폰 &nbsp;&nbsp;  <strong>2장 보유중</strong>
    </td>
+<!--     <td>
+	   쇼핑머니 &nbsp;&nbsp; <strong>9000원</strong>
+   </td> -->
    </tr>
    <tr>
     <td>
-	   쿠폰 &nbsp;&nbsp;  <strong>6000원</strong>
+	   포인트 &nbsp;&nbsp; <strong>7000원</strong>
    </td>
-    <td>
-	   포인트 &nbsp;&nbsp; <strong>2000원</strong>
+       <td>
+	   소멸 예정 포인트 &nbsp; <strong>2000원</strong>
    </td>
    </tr>
+<!--    
    <tr>
     <td>
 	   상품권 &nbsp;&nbsp;  <strong>4000원</strong>
@@ -156,11 +161,13 @@ function fn_cancel_order(order_id){
 		디지털머니 &nbsp;&nbsp; <strong>9000원</strong>
    </td>
    </tr>
+    -->
 </table>
 
 <br><br><br>	
 <h1>나의 정보
-    <a href="#"> <img  src="${contextPath}/resources/image/btn_more_see.jpg" />  </a>
+    <%-- <a href="#"> <img  src="${contextPath}/resources/image/btn_more_see.jpg" />  </a> --%>
+    <button type="button" onClick="location.href='${contextPath }/mypage/myDetailInfo.do'">수정</button>
 </h1>
 <table border=0 width=100% cellpadding=10 cellspacing=10>
   <tr>
@@ -173,7 +180,7 @@ function fn_cancel_order(order_id){
    </tr>
    <tr>
     <td>
-	   전화번호 
+	   전화번호:
    </td>
     <td>
 	   <strong>${memberInfo.hp1 }-${memberInfo.hp2}-${memberInfo.hp3 }</strong>
@@ -181,7 +188,7 @@ function fn_cancel_order(order_id){
    </tr>
    <tr>
     <td>
-	  주소 
+	  주소: 
    </td>
     <td>
 		도로명:  &nbsp;&nbsp; <strong>${memberInfo.roadAddress }</strong>  <br>

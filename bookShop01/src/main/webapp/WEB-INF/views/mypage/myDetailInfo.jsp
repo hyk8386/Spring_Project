@@ -224,6 +224,7 @@ function fn_modify_member_info(attribute){
 			}
 		}); //end ajax
 }
+
 </script>
 </head>
 
@@ -403,18 +404,11 @@ function fn_modify_member_info(attribute){
 					<td>
 					   <input type="text" name="email1" size=10 value="${memberInfo.email1 }" /> @ <input type="text" size=10  name="email2" value="${memberInfo.email2 }" /> 
 					   <select name="select_email2" onChange=""  title="직접입력">
-							<option value="non">직접입력</option>
+							<option value="" selected>선택하세요</option> 
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
-							<option value="yahoo.co.kr">yahoo.co.kr</option>
-							<option value="hotmail.com">hotmail.com</option>
-							<option value="paran.com">paran.com</option>
 							<option value="nate.com">nate.com</option>
-							<option value="google.com">google.com</option>
 							<option value="gmail.com">gmail.com</option>
-							<option value="empal.com">empal.com</option>
-							<option value="korea.com">korea.com</option>
-							<option value="freechal.com">freechal.com</option>
 					</select><Br><br> 
 					<c:choose> 
 					   <c:when test="${memberInfo.emailsts_yn=='true' }">

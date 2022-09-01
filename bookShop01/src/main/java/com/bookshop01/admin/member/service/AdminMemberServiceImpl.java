@@ -32,6 +32,9 @@ import com.bookshop01.order.vo.OrderVO;
 public class AdminMemberServiceImpl implements AdminMemberService {
 	@Autowired
 	AdminMemberDAO adminMemberDAO;
+	
+	
+	
 	public ArrayList<MemberVO> listMember(HashMap condMap) throws Exception{
 		return adminMemberDAO.listMember(condMap);
 	}

@@ -9,8 +9,6 @@
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-
-
 function execDaumPostcode() {
   new daum.Postcode({
     oncomplete: function(data) {
@@ -38,12 +36,10 @@ function execDaumPostcode() {
       if(fullRoadAddr !== ''){
         fullRoadAddr += extraRoadAddr;
       }
-
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
       document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
       document.getElementById('roadAddress').value = fullRoadAddr;
       document.getElementById('jibunAddress').value = data.jibunAddress;
-
       // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
       if(data.autoRoadAddress) {
         //예상되는 도로명 주소에 조합형 주소를 추가한다.
@@ -55,9 +51,7 @@ function execDaumPostcode() {
           document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
       } else {
           document.getElementById('guide').innerHTML = '';
-      }
-      
-     
+      }   
     }
   }).open();
 }
@@ -217,19 +211,13 @@ function fn_overlapped(){
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td><input size="10px"   type="text" name="email1" /> @ <input  size="10px"  type="text"name="email2" /> 
-						  <select name="email2" onChange=""	title="직접입력">
-									<option value="non">직접입력</option>
-									<option value="hanmail.net">hanmail.net</option>
-									<option value="naver.com">naver.com</option>
-									<option value="yahoo.co.kr">yahoo.co.kr</option>
-									<option value="hotmail.com">hotmail.com</option>
-									<option value="paran.com">paran.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="google.com">google.com</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="empal.com">empal.com</option>
-									<option value="korea.com">korea.com</option>
-									<option value="freechal.com">freechal.com</option>
+					   <select name="select_email2" onChange="checkemailaddy();"  title="직접입력">
+							<!-- <option value="non">직접입력</option> -->
+							<option value="" selected>선택하세요</option> 
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="naver.com">naver.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="gmail.com">gmail.com</option>
 							</select><br> <br> <input type="checkbox" name="emailsts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td>
 				</tr>
 				<tr class="dot_line">

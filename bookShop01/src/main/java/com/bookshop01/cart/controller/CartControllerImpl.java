@@ -64,7 +64,8 @@ public class CartControllerImpl extends BaseController implements CartController
 		cartVO.setMember_id(member_id);
 		boolean isAreadyExisted=cartService.findCartGoods(cartVO);
 		System.out.println("isAreadyExisted:"+isAreadyExisted);
-		// 상품번호가 이미 장바구니 테이블에 있으면 이미 추가되었다는 메시지를 브라우저로 전송하고, 없으면 장바구니 테이블에 추가함
+		// 상품번호가 이미 장바구니 테이블에 있으면 이미 추가되었다는 메시지를 브라우저로 전송하고, 
+		// 없으면 장바구니 테이블에 추가함
 		if(isAreadyExisted==true){
 			return "already_existed";
 		}else{

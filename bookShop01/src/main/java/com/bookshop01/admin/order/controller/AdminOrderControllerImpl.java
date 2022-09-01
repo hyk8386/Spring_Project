@@ -41,25 +41,37 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	@Autowired
 	AdminOrderService adminOrderService;
 	
+	
+	
+//------------------주문관리(관리자페이지) ----------------------------------------------------------------------//
 	@Override
 	@RequestMapping(value="/adminOrderMain.do" ,method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView adminOrderMain(@RequestParam Map<String, String> dateMap,
+									   @RequestParam(value="s_search_type", required = false) String s_search_type,
+									   @RequestParam(value="t_search_word",required = false) String t_search_word,
 			                          HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-
+		
+		System.out.println(viewName);
+		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
-		String beginDate=null,endDate=null;
+		String beginYear=dateMap.get("beginYear");
+		String beginMonth=dateMap.get("beginMonth");
+		String beginDay=dateMap.get("beginDay");
+		
+		String endDate=null;
 		
 		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
-		beginDate=tempDate[0];
+		//beginDate=tempDate[0];
 		endDate=tempDate[1];
-		dateMap.put("beginDate", beginDate);
+		//dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
 		
-		
+
 		HashMap<String,Object> condMap=new HashMap<String,Object>();
 		if(section== null) {
 			section = "1";
@@ -68,9 +80,33 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		if(pageNum== null) {
 			pageNum = "1";
 		}
+		
+		System.out.println("beginYear="+beginYear);
+		
+		if(beginYear == null ) {
+			beginYear = "2017";
+			beginMonth = "01";
+			beginDay = "01";
+		}
+		
+		String beginDate = beginYear +"-"+ beginMonth +"-"+beginDay;
+		
+		
+		System.out.println("s_search_type="+s_search_type);
+		System.out.println("t_search_type="+t_search_word);
+		System.out.println("beginDate="+beginDate);
+		
+		
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
+		condMap.put("s_search_type", s_search_type);
+		condMap.put("t_search_word", t_search_word);
+	
+		
+		
+		
+//----------------------------쿼리 실행 -------------------------------------------------------//
 		List<OrderVO> newOrderList=adminOrderService.listNewOrder(condMap);
 		mav.addObject("newOrderList",newOrderList);
 		
@@ -82,7 +118,8 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		mav.addObject("endYear",endDate2[0]);
 		mav.addObject("endMonth",endDate2[1]);
 		mav.addObject("endDay",endDate2[2]);
-		
+		mav.addObject("s_search_type", s_search_type);
+		mav.addObject("t_search_type", t_search_word);
 		mav.addObject("section", section);
 		mav.addObject("pageNum", pageNum);
 		return mav;

@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-<script>
+<script> // 퀵 메뉴 
 	var array_index=0;
 	var SERVER_URL="${contextPath}/thumbnails.do";
 	function fn_show_next_goods(){
@@ -14,14 +14,15 @@
 		var cur_goods_num=document.getElementById("cur_goods_num");
 		var _h_goods_id=document.frm_sticky.h_goods_id;
 		var _h_goods_fileName=document.frm_sticky.h_goods_fileName;
-		if(array_index <_h_goods_id.length-1)
+		if(array_index <_h_goods_id.length-1)	// 다음 클릭시 배열의 인덱스를 1증가
 			array_index++;
 		 	
 		var goods_id=_h_goods_id[array_index].value;
 		var fileName=_h_goods_fileName[array_index].value;
 		img_sticky.src=SERVER_URL+"?goods_id="+goods_id+"&fileName="+fileName;
-		cur_goods_num.innerHTML=array_index+1;
-	}
+		cur_goods_num.innerHTML=array_index+1;	// 증가된 인덱스에 대한 배열 요소의 상품 번호와 이미지 파일 이름을 가져와 표시
+	} 
+	// 퀵 메뉴의 다음 클릭 시 <hidden>태그에 저장된 상품 정보를 가져와 이미지를 표시
 
 
  function fn_show_previous_goods(){
@@ -70,7 +71,7 @@ function goodsDetail(){
 }
 </script>  
  
-<body>    
+<body>    <!-- 퀵 메뉴 -->
     <div id="sticky" >
 	<ul>
 		<li><a href="https://ko-kr.facebook.com/">
@@ -95,14 +96,14 @@ function goodsDetail(){
 				     <strong>상품이 없습니다.</strong>
 			</c:when>
 			<c:otherwise>
-	       <form name="frm_sticky"  >	        
+	       <form name="frm_sticky"  >	<!-- 세션에 저장된 퀵메뉴 목록의 이미지 정보를 <hidden>태그에 차례대로 저장 -->
 		      <c:forEach var="item" items="${quickGoodsList }" varStatus="itemNum">
 		         <c:choose>
 		           <c:when test="${itemNum.count==1 }">
 			      <a href="javascript:goodsDetail();">
 			  	         <img width="75" height="95" id="img_sticky"  
 			                 src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-			      </a>
+			      </a>	<!-- 동일한 <hidden> 태그에 연속해서 저장하면 배열로 저장됨 -->
 			        <input type="hidden"  name="h_goods_id" value="${item.goods_id}" />
 			        <input type="hidden" name="h_goods_fileName" value="${item.goods_fileName}" />
 			      <br>

@@ -25,8 +25,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	public void addNewOrder(List<OrderVO> myOrderList) throws Exception{
+		// 주문 상품 목록에 테이블을 추가
 		orderDAO.insertNewOrder(myOrderList);
-		//īƮ���� �ֹ� ��ǰ �����Ѵ�.
+		// 장바구니에서 주문한 경우 해당 상품을 장바구니에서 삭제
 		orderDAO.removeGoodsFromCart(myOrderList);
 	}	
 	

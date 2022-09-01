@@ -2,6 +2,8 @@
 	pageEncoding="utf-8"
 	isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -114,15 +116,24 @@ function init(){
     }
 </script>
 <script>
+
+// 회원정보 수정
+/* onClick="fn_modify_member_info('${member_info.member_id }','member_pw')" */
+
 function fn_modify_member_info(member_id,mod_type){
+	
 	var value;
-	// alert(member_id);
-	// alert("mod_type:"+mod_type);
-		var frm_mod_member=document.frm_mod_member;
-		if(mod_type=='member_pw'){
-			value=frm_mod_member.member_pw.value;
-			//alert("member_pw:"+value);
-		}else if(mod_type=='member_gender'){
+	 alert(member_id);
+	 alert("mod_type:"+mod_type);
+	
+		var frm_mod_member=document.frm_mod_member; 		//form태그의 name=frm_mod_member
+		
+		if(mod_type=='member_pw'){							//member_pw 수정
+			value=frm_mod_member.member_pw.value;			//
+			alert("member_pw:"+value);
+			
+		}else if(mod_type=='member_gender'){				//성별
+			
 			var member_gender=frm_mod_member.member_gender;
 			for(var i=0; member_gender.length;i++){
 			 	if(member_gender[i].checked){
@@ -132,7 +143,7 @@ function fn_modify_member_info(member_id,mod_type){
 			}
 			//alert("member_gender111:"+value);
 			
-		}else if(mod_type=='member_birth'){
+		}else if(mod_type=='member_birth'){						//생일
 			var member_birth_y=frm_mod_member.member_birth_y;
 			var member_birth_m=frm_mod_member.member_birth_m;
 			var member_birth_d=frm_mod_member.member_birth_d;
@@ -167,7 +178,10 @@ function fn_modify_member_info(member_id,mod_type){
 			}
 			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d+","+value_gn;
-		}else if(mod_type=='tel'){
+			
+			
+		}else if(mod_type=='tel'){									//전화번호
+			
 			var tel1=frm_mod_member.tel1;
 			var tel2=frm_mod_member.tel2;
 			var tel3=frm_mod_member.tel3;
@@ -182,7 +196,9 @@ function fn_modify_member_info(member_id,mod_type){
 			value_tel3=tel3.value;
 			
 			value=value_tel1+","+value_tel2+", "+value_tel3;
-		}else if(mod_type=='hp'){
+			
+			
+		}else if(mod_type=='hp'){									//핸드폰
 			var hp1=frm_mod_member.hp1;
 			var hp2=frm_mod_member.hp2;
 			var hp3=frm_mod_member.hp3;
@@ -200,7 +216,8 @@ function fn_modify_member_info(member_id,mod_type){
 			
 			value=value_hp1+","+value_hp2+", "+value_hp3+","+value_smssts_yn;
 			
-		}else if(mod_type=='email'){
+			
+		}else if(mod_type=='email'){								//이메일
 			var email1=frm_mod_member.email1;
 			var email2=frm_mod_member.email2;
 			var emailsts_yn=frm_mod_member.emailsts_yn;
@@ -211,7 +228,9 @@ function fn_modify_member_info(member_id,mod_type){
 			
 			value=value_email1+","+value_email2+","+value_emailsts_yn;
 			//alert(value);
-		}else if(mod_type=='address'){
+			
+			
+		}else if(mod_type=='address'){								//주소
 			var zipcode=frm_mod_member.zipcode;
 			var roadAddress=frm_mod_member.roadAddress;
 			var jibunAddress=frm_mod_member.jibunAddress;
@@ -224,11 +243,12 @@ function fn_modify_member_info(member_id,mod_type){
 			
 			value=value_zipcode+","+value_roadAddress+","+value_jibunAddress+","+value_namujiAddress;
 		}
+		
 	 
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
-			url : "http://localhost:8090/bookshop01/admin/member/modifyMemberInfo.do",
+			url : "http://localhost:8090/camping/admin/member/modifyMemberInfo.do",
 			data : {
 				member_id:member_id,
 				mod_type:mod_type,
@@ -252,6 +272,8 @@ function fn_modify_member_info(member_id,mod_type){
 		}); //end ajax
 }
 
+
+//회원 탈퇴,복원 시키기
 function fn_delete_member(member_id ,del_yn){
 	var frm_mod_member=document.frm_mod_member;
 	var i_member_id = document.createElement("input");
@@ -266,7 +288,7 @@ function fn_delete_member(member_id ,del_yn){
     frm_mod_member.appendChild(i_member_id);
     frm_mod_member.appendChild(i_del_yn);
     frm_mod_member.method="post";
-    frm_mod_member.action="/bookshop01/admin/member/deleteMember.do";
+    frm_mod_member.action="/camping/admin/member/deleteMember.do";
     frm_mod_member.submit();
 }
 </script>

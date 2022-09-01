@@ -5,6 +5,7 @@
 
 <mapper namespace="mapper.member">
 <!-- 리절트 맵 정의 -->	
+	<!-- 회원 정보를 저장할 resultMap을 정의 -->
 	<resultMap id="memberResult" type="MemberVO">
 		<result property="member_id" column="member_id" />
 		<result property="member_pw" column="member_pw" />
@@ -33,27 +34,30 @@
 		<result property="jibunAddress" column="jibunAddress" />
 		<result property="namujiAddress" column="namujiAddress" />
 		<result property="joinDate" column="joinDate" />
-	</resultMap>	
-
+	</resultMap>
+		
+	<!-- 로그인 -->								<!-- Map으로 회원 id,pw가 전달 -->
 	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
 	    <![CDATA[
 			select * from t_shopping_member 
 			 where member_id=#{member_id}
 			 and member_pw=#{member_pw}			
 			 
-		]]>
+		]]>  <!-- id, pw 일치하는 회원을 DAO로 반환 -->
 	</select>
 	
+	<!-- 아이디 중복체크 -->
 	<select id="selectOverlappedID" parameterType="String" resultType="String">
-	   select decode(count(*),1, 'true', 0, 'false')
+	   select decode(count(*),1, 'true', 0, 'false')	<!--  id값이 있으면 true, 없으면 false를 반환 -->
 	   from t_shopping_member
 	   where member_id = #{id}
 	</select>
 	
+	<!-- 회원가입 : 회원 가입창에서 입력한 회원 정보를 테이블에 추가 -->
   <insert id="insertNewMember"  parameterType="memberVO">
   <![CDATA[
     	insert into t_shopping_member(member_id,
-				 					                  member_pw,
+				 					 member_pw,
                                      member_name,
                                      member_gender,
                                      member_birth_y,
@@ -99,5 +103,19 @@
                                   
                                       
    ]]>      
-  </insert>
+		</insert>
+	
+		<select id="delete" resultType="memberVO"  parameterType="java.util.Map"  >
+		    <![CDATA[
+				delete from T_SHOPPING_MEMBER WHERE MEMBER_ID = #{memberId}
+			]]>
+		</select>
+		
+		<select id="returnPW" parameterType="String" resultType="String">
+	   		<![CDATA[
+				select member_pw from t_shopping_member where member_id = #{memberId}			
+			 
+			]]>
+		</select>
+   
 </mapper>

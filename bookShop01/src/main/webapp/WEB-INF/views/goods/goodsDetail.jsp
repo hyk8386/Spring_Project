@@ -11,7 +11,7 @@
 
  <%
      //치환 변수 선언합니다.
-      pageContext.setAttribute("crcn", "\r\n"); //개행문자
+      pageContext.setAttribute("crcn", "\r\n"); // 개행문자
       pageContext.setAttribute("br", "<br/>"); //br 태그
 %>  
 <html>
@@ -44,6 +44,7 @@
 }
 </style>
 <script type="text/javascript">
+	// 장바구니 추가
 	function add_cart(goods_id) {
 		$.ajax({
 			type : "post",
@@ -137,22 +138,24 @@
 	
 function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	var _isLogOn=document.getElementById("isLogOn");
-	var isLogOn=_isLogOn.value;
+	var isLogOn=_isLogOn.value;	
+	// <hidden>태그의 id로 로그인 상태를 가져옴
 	
 	 if(isLogOn=="false" || isLogOn=='' ){
 		alert("로그인 후 주문이 가능합니다!!!");
-	} 
+	}	// 로그인 상태를 확인 
 	
 	
-		var total_price,final_total_price;
-		var order_goods_qty=document.getElementById("order_goods_qty");
-		
-		var formObj=document.createElement("form");
-		var i_goods_id = document.createElement("input"); 
+	var total_price,final_total_price;
+	var order_goods_qty=document.getElementById("order_goods_qty");
+						// 상품 주문 개수를 가져옴
+	var formObj=document.createElement("form");	// <form>태그를 동적으로 생성
+	var i_goods_id = document.createElement("input"); 
     var i_goods_title = document.createElement("input");
     var i_goods_sales_price=document.createElement("input");
     var i_fileName=document.createElement("input");
     var i_order_goods_qty=document.createElement("input");
+    // 주문 상품 정보를 전송할 <input>태그를 동적으로 생성
     
     i_goods_id.name="goods_id";
     i_goods_title.name="goods_title";
@@ -165,18 +168,20 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     i_goods_title.value=goods_title;
     i_goods_sales_price.value=goods_sales_price;
     i_fileName.value=fileName;
+    // <input>태그에 name/value로 값을 설정
     
     formObj.appendChild(i_goods_id);
     formObj.appendChild(i_goods_title);
     formObj.appendChild(i_goods_sales_price);
     formObj.appendChild(i_fileName);
     formObj.appendChild(i_order_goods_qty);
-
+	// 동적으로 생성한 <input> 태그에 값을 설정한 후 다시 <form> 태그에 추가
+    
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/order/orderEachGoods.do";
+    formObj.action="${contextPath}/order/orderEachGoods.do";	
     formObj.submit();
-	}	
+	}	// controller로 요청하면서 <input>태그의 값을 매개변수로 전달
 </script>
 </head>
 <body>
@@ -212,10 +217,10 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 					<td class="fixed">포인트적립</td>
 					<td class="active">${goods.goods_point}P(10%적립)</td>
 				</tr>
-				<tr class="dot_line">
+			<!-- 	<tr class="dot_line">
 					<td class="fixed">포인트 추가적립</td>
 					<td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td class="fixed">제조일</td>
 					<td class="fixed">
@@ -260,10 +265,12 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			</tbody>
 		</table>
 		<ul>
-			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">구매하기 </a></li>
+			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }',
+												'${goods.goods_sales_price}','${goods.goods_fileName}');">구매하기 </a></li>
+												
 			<li><a class="cart" href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
 			
-			<li><a class="wish" href="#">위시리스트</a></li>
+			<!-- <li><a class="wish" href="#">위시리스트</a></li> -->
 		</ul>
 	</div>
 	<div class="clear"></div>

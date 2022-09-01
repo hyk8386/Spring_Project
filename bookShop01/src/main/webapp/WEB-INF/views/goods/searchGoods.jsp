@@ -17,8 +17,8 @@
 </head>
 <body>
 	<hgroup>
-		<h1>컴퓨터와 인터넷</h1>
-		<h2>오늘의 책</h2>
+		<h1>검색결과</h1>
+		
 	</hgroup>
 	<section id="new_book">
 		<h3>새로나온 책</h3>
@@ -42,7 +42,7 @@
 						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
 						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
 						</a>
-						<div class="sort">[컴퓨터 인터넷]</div>
+						<div class="sort"></div>
 						<div class="title">
 							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
 							  ${item.goods_title}
@@ -75,13 +75,13 @@
 		<div class="clear"></div>
 	</section>
 	<div class="clear"></div>
-	<div id="sorting">
+<!-- 	<div id="sorting">
 		<ul>
 			<li><a class="active" href="#">베스트 셀러</a></li>
 			<li><a href="#">최신 출간</a></li>
 			<li><a style="border: currentColor; border-image: none;" href="#">최근 등록</a></li>
 		</ul>
-	</div>
+	</div> -->
 	<table id="list_view">
 		<tbody>
 		  <c:forEach var="item" items="${goodsList }"> 
@@ -112,7 +112,7 @@
 						<UL>
 							<li><a href="#">장바구니</a></li>
 							<li><a href="#">구매하기</a></li>
-							<li><a href="#">비교하기</a></li>
+							
 						</UL>
 					</td>
 			</tr>

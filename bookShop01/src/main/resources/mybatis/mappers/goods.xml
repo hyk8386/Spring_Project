@@ -58,6 +58,7 @@
 	    ]]>
 	</select>
 	
+	<!-- 상품 정보와 메인 이미지 파일 정보 조회 -->
 	<select id="selectGoodsDetail" resultMap="goodsResult"   parameterType="String"  >
 	    <![CDATA[
 		     select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
@@ -67,6 +68,7 @@
 	        order by g.goods_id
     	]]>
 	</select>
+	<!-- 상품 상세 이미지파일 정보 조회 -->
 	<select id="selectGoodsDetailImage" resultMap="imageResult"   parameterType="String"  >
 	    <![CDATA[
 		    	select * from  t_goods_detail_image 
@@ -93,7 +95,7 @@
         order by goods_creDate desc
 		]]>
 	</select>
-	
+	<!-- 상품 상세페이지 리뷰 -->
 	<select id="selectGoodsReview" resultMap="reviewResult" parameterType="String">
 		<![CDATA[
         select num, id, review, score, regDate

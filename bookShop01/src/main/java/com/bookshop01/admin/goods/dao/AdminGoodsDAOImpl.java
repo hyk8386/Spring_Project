@@ -31,13 +31,17 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 			sqlSession.insert("mapper.admin.goods.insertGoodsImageFile",imageFileVO);
 		}
 	}
-		
+	
+	
+	//상품조회를 위한 쿼리문
 	@Override
 	public List<GoodsVO>selectNewGoodsList(Map condMap) throws DataAccessException {
 		ArrayList<GoodsVO>  goodsList=(ArrayList)sqlSession.selectList("mapper.admin.goods.selectNewGoodsList",condMap);
 		return goodsList;
 	}
 	
+	
+	//상품상세 = 상품수정 Form을 위한 쿼리문
 	@Override
 	public GoodsVO selectGoodsDetail(int goods_id) throws DataAccessException{
 		GoodsVO goodsBean = new GoodsVO();
@@ -45,6 +49,7 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 		return goodsBean;
 	}
 	
+	//상품상세 = 상품수정 Form을 위한 쿼리문
 	@Override
 	public List selectGoodsImageFileList(int goods_id) throws DataAccessException {
 		List imageList=new ArrayList();

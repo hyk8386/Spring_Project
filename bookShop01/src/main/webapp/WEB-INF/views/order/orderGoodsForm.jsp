@@ -532,12 +532,12 @@ function fn_process_pay_order(){
 					  <h2>${item.order_goods_qty }개<h2>
 					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
 					</td>
-					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
+					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>					
 					<td><h2>0원</h2></td>
 					<td><h2>${1500 *item.order_goods_qty}원</h2></td>
 					<td>
-					  <h2>${item.goods_sales_price * item.order_goods_qty}원</h2>
-					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sales_price * item.order_goods_qty}" />
+					  <h2>${item.goods_sales_price * item.order_goods_qty }원</h2>
+					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sales_price * item.order_goods_qty }" />
 					</td>
 			</tr>
 			<c:set var="final_total_order_price"
@@ -716,7 +716,7 @@ function fn_process_pay_order(){
 					<td><input name="discount_yechi" type="text" size="10" />원/1000원
 						&nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두 사용하기</td>
 				</tr>
-				<tr class="dot_line">
+			<!-- 	<tr class="dot_line">
 					<td>상품권 전환금</td>
 					<td cellpadding="5"><input name="discount_sangpum" type="text"
 						size="10" />원/0원 &nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두
@@ -733,7 +733,7 @@ function fn_process_pay_order(){
 					<td cellpadding="5"><input name="discount_coupon" type="text"
 						size="10" />원/0원 &nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두
 						사용하기</td>
-				</tr>
+				</tr> -->
 			</tbody>
 		</table>
 	</div>

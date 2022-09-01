@@ -14,6 +14,7 @@ import com.bookshop01.goods.vo.GoodsVO;
 import com.bookshop01.goods.vo.ImageFileVO;
 import com.bookshop01.goods.vo.ReviewVO;
 
+// 상품 상세페이지
 @Service("goodsService")
 @Transactional(propagation=Propagation.REQUIRED)
 public class GoodsServiceImpl implements GoodsService{
@@ -33,13 +34,13 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 	
 	public Map goodsDetail(String _goods_id) throws Exception {
-		Map goodsMap=new HashMap();
+		Map goodsMap=new HashMap();	
 		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(_goods_id);
 		goodsMap.put("goodsVO", goodsVO);
 		List<ImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(_goods_id);
-		goodsMap.put("imageList", imageList);
+		goodsMap.put("imageList", imageList);	
 		List<ReviewVO> reviewList = goodsDAO.selectGoodsReview(_goods_id);
-		goodsMap.put("reviewList", reviewList);
+		goodsMap.put("reviewList", reviewList);	// 상품 정보와 이미지 정보, 리뷰를 조회한 후 HashMap에 저장
 		return goodsMap;
 	}
 	
@@ -53,6 +54,7 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsList;
 	}
 	
+	// 상품 상세페이지 리뷰
 	public int insertReview(ReviewVO reviewVO) throws Exception{
 		return goodsDAO.insertReview(reviewVO);
 	}
