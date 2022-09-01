@@ -54,4 +54,10 @@ public class BoardDAOImpl implements BoardDAO{
 		return selectBoardListPage;
 	}
 
+	@Override
+	public int countBoardList() throws DataAccessException {
+		int count = sqlSession.selectOne("mapper.admin.board.countBoardList");
+		return count;
+	}
+
 }

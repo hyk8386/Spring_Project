@@ -54,4 +54,10 @@ public class BoardServiceImpl implements BoardService{
 		return boardListPage;
 	}
 
+	@Override
+	public int countBoardList() throws Exception {
+		int count = boardDAO.countBoardList();
+		return count;
+	}
+
 }

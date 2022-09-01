@@ -20,4 +20,6 @@ public interface BoardDAO {
 		public int updateTextView(BoardVO boardVO) throws DataAccessException;
 		
 		public List<BoardVO> getListWithPaging(Criteria cri);
+		
+		public int countBoardList() throws DataAccessException;
 }

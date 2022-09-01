@@ -38,9 +38,12 @@ public class BoardControllerImpl implements BoardController{
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		
-		List boardList = boardService.boardList();
+		//List boardList = boardService.boardList();
+		int count = boardService.countBoardList();
+		
+		System.out.println(count);
 		mav.addObject("boardList", boardService.getList(cri));
-		mav.addObject("pageMaker", new PageDTO(cri, 50));
+		mav.addObject("pageMaker", new PageDTO(cri, count));
 		//mav.addObject("boardList", boardList);
 		return mav;
 	}

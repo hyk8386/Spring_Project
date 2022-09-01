@@ -10,7 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <title>Insert title here</title>
 <script>
 										
@@ -53,37 +55,38 @@
 	<form action="#">
 		<h1>공지사항 리스트</h1>
 		<br>
-		<table width="750">
-			<tr>
-				 <td align="center" width="30" border="1">글번호</td>
-				 <td width="250">제목</td>
-				 <!-- <td width="150">내용</td> -->
-				 <td width="30">작성자</td>
-				 <td width="40">등록일자</td>
-				 
-			</tr>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>글번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>등록일자</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+
 			<c:forEach var="boardList" items="${boardList}" varStatus="status">
-			<tr>
-				 <td align="center"><c:out value="${status.count }"></c:out></td>
-				 <td><a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno }">${boardList.title }</a></td>
-				 <%-- <td>${boardList.content }</td> --%>
-				 <td>${boardList.writer }</td>
-				 <td>${boardList.regdate }</td>
-			</tr>
+				<tr height="10">
+					<td><c:out value="${status.count }"></c:out></td>
+					<td width="500"><a href="${contextPath}/admin/board/textview.do?bno=${boardList.bno }">${boardList.title }</a></td>
+					<td>${boardList.writer }</td>
+					<td>${boardList.regdate }</td>
+				</tr>
 			</c:forEach>
-			</table>
+    </tbody>
+</table>
 			<table>
-			
 			<tr>
 				<td>
 				 <button type="button" onclick="location.href='${contextPath}/admin/board/addtextform.do';">글쓰기</button> 
 				<tr>
 			</tr>
-			
 		</table>
 	</form>
 	<!--페이지 처리 Start  -->
-                                <h3>${pageMaker}</h3>
+                                <%-- <h3>${pageMaker}</h3> --%>
                                 <div class='pull-right'>
                                 	<ul class="pagination">
                                 	
@@ -98,18 +101,18 @@
                                 		</c:forEach>
                                 		
                                 		<c:if test="${pageMaker.next }">
-                                			<li class="page-item"><a class="page-link" href="${pageMaker.endPage+1 }">Next</a></li>
+                                			<a class="page-link" href="${pageMaker.endPage+1 }">Next</a>
                                 		</c:if>
                                 	</ul>
                                 </div>
-                                
-                             <%--    <form id="actionForm" action="${contextPath}/admin/board/boardList.do" method="get">
+<%--                                 
+                                 <form id="actionForm" action="#" method="get">
                                 	<input type="submit" name="pageNum" value="${pageMaker.cri.pageNum }">
                                 	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-                                </form> --%>
+                                </form>  --%>
                                 
                                 <!-- 페이지 처리 End -->
-                                
+
                                
 </body>
 </html>

@@ -18,4 +18,6 @@ public interface BoardService {
 	public int modTextView(BoardVO boardVO) throws Exception;
 	
 	public List<BoardVO> getList(Criteria cri);
+	
+	public int countBoardList() throws Exception;
 }
